@@ -3,6 +3,7 @@ import React from 'react'
 import './sing-in.styles.scss'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
+import { singInWithGoogle } from '../../firebase/firebase.utils'
 
 class SingIn extends React.Component {
     constructor(){
@@ -42,6 +43,7 @@ class SingIn extends React.Component {
                     <FormInput type="email" name="email" value={this.state.email} handleChange={this.handleChange} label="Email" required />
                     <FormInput type="password" name="password" value={this.state.password} handleChange={this.handleChange} label="Senha" required />
                     <CustomButton type="submit">Login</CustomButton>
+                    <CustomButton type="button" onClick={singInWithGoogle}>Login com Google</CustomButton>
                 </form>
             </div>
         )
