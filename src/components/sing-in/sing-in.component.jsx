@@ -8,7 +8,6 @@ import { singInWithGoogle } from '../../firebase/firebase.utils'
 class SingIn extends React.Component {
     constructor(){
         super();
-
         this.state = {
             email: '',
             password: ''
@@ -17,7 +16,6 @@ class SingIn extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault();
-
         this.setState({
             email: '',
             password: ''
@@ -26,14 +24,12 @@ class SingIn extends React.Component {
 
     handleChange = event => {
         const { value, name } = event.target;
-
         this.setState({
             [name]: value
         })
     }
 
     render(){
-
         return (
             <div className="sing-in">
                 <h2>Já possui uma conta?</h2>
