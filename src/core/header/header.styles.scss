@@ -21,6 +21,19 @@
       .option {
         padding: 10px 15px;
       }
+
+      .att {
+        text-decoration: none;
+        font-size: 23px;
+        color: black;
+        cursor: pointer;
+
+        &:hover {
+          color: gray;
+          transition-duration: 200ms;
+        }
+
+      }
     }
 }
   

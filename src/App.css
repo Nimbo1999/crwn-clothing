@@ -13,3 +13,7 @@ a:hover {
     color: gray;
     transition-duration: 200ms;
 }
+
+* {
+    box-sizing: border-box;
+}
