@@ -3,7 +3,7 @@ import React from 'react'
 import './sing-in.styles.scss'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
-import { singInWithGoogle } from '../../firebase/firebase.utils'
+import { auth, singInWithGoogle } from '../../firebase/firebase.utils'
 
 class SingIn extends React.Component {
     constructor(){
@@ -14,12 +14,16 @@ class SingIn extends React.Component {
         }
     }
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
+        const { email, password } = this.state;
         event.preventDefault();
-        this.setState({
-            email: '',
-            password: ''
-        });
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+
+            this.setState({email: '', password: ''});
+        } catch(e) {
+            console.error(e)
+        }
     }
 
     handleChange = event => {
@@ -33,7 +37,7 @@ class SingIn extends React.Component {
         return (
             <div className="sing-in">
                 <h2>Já possui uma conta?</h2>
-                <span>Entre com sua senha e email</span>
+                <span>Entre com seu email e senha</span>
 
                 <form onSubmit={this.handleSubmit}>
                     <FormInput type="email" name="email" value={this.state.email} handleChange={this.handleChange} label="Email" required />
