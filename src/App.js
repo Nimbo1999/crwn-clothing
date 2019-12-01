@@ -7,10 +7,11 @@ import HomePage from './pages/homepage/homepage.component';
 import SingInOut from './pages/sing-in-out/sing-in-out.component';
 import Header from './core/header/header.component';
 import ShopPage from './pages/shop/shop.component';
+import CheckoutPage from './pages/checkout/checkout.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
 import { createStructuredSelector } from 'reselect';
-import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCurrentUser } from './redux/user/user.selectors';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -46,6 +47,7 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
           <Route exact path="/singin" render={() => this.props.currentUser ? (<Redirect to='/' />) : (<SingInOut/>)} />
+          <Route exact path="/checkout" component={CheckoutPage} />
         </Switch>
       </div>
     );
