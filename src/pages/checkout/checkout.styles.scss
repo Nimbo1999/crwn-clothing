@@ -16,6 +16,10 @@
       .header-block {
         text-transform: capitalize;
         width: 23%;
+
+        span {
+          font-size: 22px;
+        }
   
         &:last-child {
           width: 8%;
