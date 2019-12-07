@@ -6,35 +6,35 @@ const INITIAL_STATE = {
   cartItems: []
 };
 
-const cartReducer = (prevState = INITIAL_STATE, action) => {
+const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type){
 
     case CartActionTypes.TOGGLE_CART_HIDDEN:
       return {
-        ...prevState,
-        hidden: !prevState.hidden
+        ...state,
+        hidden: !state.hidden
       }
 
     case CartActionTypes.ADD_ITEM:
       return {
-        ...prevState,
-        cartItems: addItemToCart(prevState.cartItems, action.payload)
+        ...state,
+        cartItems: addItemToCart(state.cartItems, action.payload)
       }
       
     case CartActionTypes.REMOVE_ITEM:
       return {
-        ...prevState,
-        cartItems: removeItemToCart(prevState.cartItems, action.payload)
+        ...state,
+        cartItems: removeItemToCart(state.cartItems, action.payload)
       }
       
     case CartActionTypes.CLEAR_ITEM_FROM_CART:
       return {
-        ...prevState,
-        cartItems: prevState.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
+        ...state,
+        cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
       }
 
     default:
-      return prevState
+      return state
 
   }
 }
