@@ -1,0 +1,2 @@
+## Configurando o projeto
+Para utilizar esse projeto é necessário adicionar um arquivo chamado firebase.utils.js na pasta src/firebase e para isso, eu deixei um arquivo chamado firebase.teste.js para servir como molde. Basta trocar as informações da constante 'config' para as informações do seu firebase.
