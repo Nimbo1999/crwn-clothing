@@ -26,5 +26,6 @@ yarn-error.log*
 *.lock
 
 # firebase sensive data
-
+./src/firebase/firebase.utils.js
 /src/firebase/firebase.utils.js
+src/firebase/firebase.utils.js
