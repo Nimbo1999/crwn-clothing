@@ -8,41 +8,36 @@ import SingInOut from './pages/sing-in-out/sing-in-out.component';
 import Header from './core/header/header.component';
 import ShopPage from './pages/shop/shop.component';
 import CheckoutPage from './pages/checkout/checkout.component';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+// import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selectors';
-// import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
 
 class App extends React.Component {
-  unsubscribeFromAuth = null;
+  // unsubscribeFromAuth = null;
 
-  componentDidMount() {
-    const {
-      setCurrentUser,
-      // collectionsArray
-    } = this.props;
+  // componentDidMount() {
+  //   const { setCurrentUser } = this.props;
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+  //   this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 
-      if ( userAuth ){
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot(snapshot => {
-          setCurrentUser({
-              id: snapshot.id,
-              ...snapshot.data()
-          })
-        });
-      }
+  //     if ( userAuth ){
+  //       const userRef = await createUserProfileDocument(userAuth);
+  //       userRef.onSnapshot(snapshot => {
+  //         setCurrentUser({
+  //             id: snapshot.id,
+  //             ...snapshot.data()
+  //         })
+  //       });
+  //     }
 
-      setCurrentUser(userAuth);
-      // addCollectionAndDocuments('collections', collectionsArray.map(({ title, items }) => ({title, items})));
-    })
-  }
+  //     setCurrentUser(userAuth);
+  //   });
+  // }
 
-  componentWillUnmount(){
-    this.unsubscribeFromAuth();
-  }
+  // componentWillUnmount(){
+  //   this.unsubscribeFromAuth();
+  // }
 
   render(){
     return (
@@ -60,8 +55,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  // collectionsArray: selectCollectionsForPreview
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({

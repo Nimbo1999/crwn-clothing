@@ -3,7 +3,10 @@ import React from 'react'
 import './sing-in.styles.scss'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
-import { auth, singInWithGoogle } from '../../firebase/firebase.utils'
+import { auth } from '../../firebase/firebase.utils'
+
+import { connect } from 'react-redux'
+import { googleSignInStart } from '../../redux/user/user.actions'
 
 class SingIn extends React.Component {
     constructor(){
@@ -34,6 +37,9 @@ class SingIn extends React.Component {
     }
 
     render(){
+
+        const { googleSignInStart } = this.props;
+
         return (
             <div className="sing-in">
                 <h2>Já possui uma conta?</h2>
@@ -44,7 +50,7 @@ class SingIn extends React.Component {
                     <FormInput type="password" name="password" value={this.state.password} handleChange={this.handleChange} label="Senha" required />
                     <div className="buttons">
                         <CustomButton type="submit">Login</CustomButton>
-                        <CustomButton type="button" onClick={singInWithGoogle} isGoogleSignIn>Login com Google</CustomButton>
+                        <CustomButton type="button" onClick={googleSignInStart} isGoogleSignIn>Login com Google</CustomButton>
                     </div>
                 </form>
             </div>
@@ -52,4 +58,8 @@ class SingIn extends React.Component {
     }
 }
 
-export default SingIn;
+const mapDispatchToProps = dispatch => ({
+    googleSignInStart: () => dispatch(googleSignInStart())
+})
+
+export default connect(null, mapDispatchToProps)(SingIn);
