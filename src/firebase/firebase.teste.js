@@ -18,27 +18,30 @@ firebase.initializeApp(config);
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-const singInWithGoogle = () => auth.signInWithPopup(provider);
+const singInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 const createUserProfileDocument = async (userAuth, additionalData) =>{
     if (!userAuth) return;
     
-    const userRef = firestore.doc(`users/${userAuth.uid}`)
-    const snapshot = await userRef.get()
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+    const snapshot = await userRef.get();
 
     if (!snapshot.exists){
-        const { displayName, email } = userAuth;
+        const { displayName, email, emailVerified, phoneNumber, photoURL } = userAuth;
         const createdAt = new Date();
         try{
             await userRef.set({
                 displayName,
                 email,
+                emailVerified,
+                phoneNumber,
+                photoURL,
                 createdAt,
                 ...additionalData
-            })
+            });
         } catch (e) {
             console.log('error creating user', e.message)
         }
@@ -76,5 +79,17 @@ const convertCollectionsSnapshotToMap = collection => {
     } ,{});
 }
 
-export { auth, firestore, provider, singInWithGoogle, createUserProfileDocument, addCollectionAndDocuments, convertCollectionsSnapshotToMap };
+const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+            unsubscribe();
+            resolve(userAuth);
+        }, reject);
+    });
+}
+
+export {
+auth, firestore, googleProvider, singInWithGoogle, createUserProfileDocument,
+addCollectionAndDocuments, convertCollectionsSnapshotToMap, getCurrentUser
+};
 export default firebase;
