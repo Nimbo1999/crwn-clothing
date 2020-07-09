@@ -19,7 +19,7 @@ const CollectionItem = ( {item, addItem} ) => {
 
         <div className="collection-footer">
             <div className="name">{name}</div>
-            <div className="price">R${price}</div>
+            <div className="price">{price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</div>
         </div>
 
         <CustomButton className='custom-button' inverted onClick={() => addItem(item)}> Add to cart</CustomButton>

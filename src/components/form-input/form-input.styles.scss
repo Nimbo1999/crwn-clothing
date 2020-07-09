@@ -11,6 +11,10 @@ $main-color: black;
   position: relative;
   margin: 45px 0;
 
+  @media screen and (max-width: 800px) {
+    padding: 0 20px;
+  }
+
   .form-input {
     background: none;
     background-color: white;
@@ -49,6 +53,10 @@ $main-color: black;
 
     &.shrink {
       @include shrinkLabel();
+    }
+  
+    @media screen and (max-width: 800px) {
+      padding: 0 20px;
     }
   }
 }

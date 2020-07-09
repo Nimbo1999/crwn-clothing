@@ -24,7 +24,7 @@ const CheckouItem = ({ cartItem, clearItem, addItem, removeItem }) => {
                 <span className='value'>{quantity}</span>
                 <div className="arrow" onClick={() => addItem(cartItem)}>&#10097;</div>
             </span>
-            <span className="price">{price}</span>
+            <span className="price">{price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</span>
             <div className="remove-button" onClick={() => clearItem(cartItem)}>
                 &#10005;
             </div>

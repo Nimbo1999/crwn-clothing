@@ -80,4 +80,8 @@ export const MenuItemContainer = styled.div`
     }
 
     ${useLarge}
+
+    @media screen and (max-width: 800px) {
+        height: 200px;
+    }
 `

@@ -6,6 +6,9 @@
     padding: 15px 0;
     font-size: 22px;
     align-items: center;
+    @media screen and (max-width: 800px) {
+      font-size: 18px;
+    }
   
     .image-container {
       width: 23%;
@@ -38,6 +41,9 @@
     .remove-button {
       padding-left: 12px;
       cursor: pointer;
+      @media screen and (max-width: 800px) {
+        padding-left: 0;
+      }
     }
   }
   

@@ -8,7 +8,7 @@ const CartItem = ({ item: {imageUrl, price, name, quantity}}) => (
         <div className="item-details">
             <span className="name">{name}</span>
             <span className="price">
-                {quantity} x R${price}
+                {quantity} x {price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
             </span>
         </div>
     </div>

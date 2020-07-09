@@ -34,8 +34,21 @@ const googleSignInStyled = css`
   }
 `;
 
+const blockStyle = css`
+  width: 100%;
+  background-color: black;
+  color: white;
+  border: none;
+  &:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+`;
+
 const getButtonStyles = props => {
   if (props.isGoogleSignIn) return googleSignInStyled;
+  if (props.block) return blockStyle
 
   return props.inverted ? invertedButtonStyles : buttonStyles;
 }
